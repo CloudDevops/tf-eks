@@ -1,3 +1,4 @@
+
 resource "aws_eip" "nat" {
   vpc = true
 
@@ -5,6 +6,20 @@ resource "aws_eip" "nat" {
     Name = "nat"
   }
 }
+
+/*
+resource "aws_nat_gateway" "public_gw" {
+allocation_id = "eipalloc-010cae895c8bf8ccd"  
+subnet_id     = "subnet-08c902058f56e68dc"
+
+tags = {
+  Name = "eksctl-development-cluster/NATGateway"
+}
+
+}
+
+*/
+
 
 resource "aws_nat_gateway" "nat" {
   allocation_id = aws_eip.nat.id
